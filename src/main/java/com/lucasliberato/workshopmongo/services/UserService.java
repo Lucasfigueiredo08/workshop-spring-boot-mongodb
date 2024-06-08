@@ -1,6 +1,7 @@
 package com.lucasliberato.workshopmongo.services;
 
 import com.lucasliberato.workshopmongo.domain.User;
+import com.lucasliberato.workshopmongo.dto.UserDTO;
 import com.lucasliberato.workshopmongo.repository.UserRepository;
 import com.lucasliberato.workshopmongo.services.exception.ObjectNotFoundException;
 import com.sun.jdi.ObjectCollectedException;
@@ -26,6 +27,17 @@ public class UserService {
         if (Objects.isNull(user)){
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
+        return user;
+    }
+
+    public User insert(User user){
+        return userRepository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO){
+        User user = new User();
+        user.setEmail(userDTO.getEmail());
+        user.setName(userDTO.getName());
         return user;
     }
 
