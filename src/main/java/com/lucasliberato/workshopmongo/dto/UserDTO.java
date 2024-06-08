@@ -2,6 +2,8 @@ package com.lucasliberato.workshopmongo.dto;
 
 import com.lucasliberato.workshopmongo.domain.User;
 
+import java.util.Optional;
+
 public class UserDTO {
 
     private String id;
