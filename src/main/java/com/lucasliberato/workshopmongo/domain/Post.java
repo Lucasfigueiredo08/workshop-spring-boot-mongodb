@@ -1,10 +1,13 @@
 package com.lucasliberato.workshopmongo.domain;
 
 import com.lucasliberato.workshopmongo.dto.AuthorDTO;
+import com.lucasliberato.workshopmongo.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Post implements Serializable {
@@ -20,6 +23,12 @@ public class Post implements Serializable {
      * User
      */
     private AuthorDTO user;
+
+    private List<CommentDTO> comments = new ArrayList<>();
+
+
+
+
 
     public Post() {
     }
@@ -86,4 +95,11 @@ public class Post implements Serializable {
     }
 
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
 }

@@ -3,12 +3,12 @@ package com.lucasliberato.workshopmongo.config;
 import com.lucasliberato.workshopmongo.domain.Post;
 import com.lucasliberato.workshopmongo.domain.User;
 import com.lucasliberato.workshopmongo.dto.AuthorDTO;
+import com.lucasliberato.workshopmongo.dto.CommentDTO;
 import com.lucasliberato.workshopmongo.repository.PostRepository;
 import com.lucasliberato.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.annotation.AccessType;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -42,6 +42,14 @@ public class Instantiation implements CommandLineRunner {
         var post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para Joinville, Abraços", new AuthorDTO(maria));
         var post2 = new Post(null, sdf.parse("08/06/2024"), "Bom dia", "O sou já nasceu lá na fazendinha!", new AuthorDTO(maria));
 
+        CommentDTO c1 = new CommentDTO("Boa viagem!", sdf.parse("21/03/2022"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Curte lá!", sdf.parse("21/03/2024"), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um bom dia", sdf.parse("21/03/2023"), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1, c2));
+        post2.getComments().addAll(Arrays.asList(c3));
+
+
         postRepository.saveAll(Arrays.asList(post1, post2));
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
@@ -49,5 +57,9 @@ public class Instantiation implements CommandLineRunner {
         userRepository.save(maria);
 
 
+
+
+
     }
 }
+
