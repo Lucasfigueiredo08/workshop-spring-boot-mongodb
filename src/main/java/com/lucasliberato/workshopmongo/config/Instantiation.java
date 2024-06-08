@@ -2,6 +2,7 @@ package com.lucasliberato.workshopmongo.config;
 
 import com.lucasliberato.workshopmongo.domain.Post;
 import com.lucasliberato.workshopmongo.domain.User;
+import com.lucasliberato.workshopmongo.dto.AuthorDTO;
 import com.lucasliberato.workshopmongo.repository.PostRepository;
 import com.lucasliberato.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,14 @@ public class Instantiation implements CommandLineRunner {
 
         List<User> list  = List.of(maria, alex, bob);
 
-        var post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para Joinville, Abraços", maria);
-        var post2 = new Post(null, sdf.parse("08/06/2024"), "Bom dia", "O sou já nasceu lá na fazendinha!", maria);
-
-
-
         userRepository.saveAll(list);
+
+        var post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para Joinville, Abraços", new AuthorDTO(maria));
+        var post2 = new Post(null, sdf.parse("08/06/2024"), "Bom dia", "O sou já nasceu lá na fazendinha!", new AuthorDTO(maria));
+
+
+
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }

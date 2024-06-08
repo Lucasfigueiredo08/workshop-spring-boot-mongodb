@@ -1,5 +1,6 @@
 package com.lucasliberato.workshopmongo.domain;
 
+import com.lucasliberato.workshopmongo.dto.AuthorDTO;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
@@ -18,12 +19,12 @@ public class Post implements Serializable {
     /**
      * User
      */
-    private User user;
+    private AuthorDTO user;
 
     public Post() {
     }
 
-    public Post(String id, Date date, String title, String body, User user) {
+    public Post(String id, Date date, String title, String body, AuthorDTO user) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -63,11 +64,11 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public User getUser() {
+    public AuthorDTO getUser() {
         return user;
     }
 
-    public void setUser() {
+    public void setUser(AuthorDTO user) {
         this.user = user;
     }
 
